@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Happy Birthday Khushi ✨</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<link href="https://fonts.googleapis.com/css2?family=BBH+Bogle:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+  box-sizing: border-box;
+  font-family: 'BBH Bogle', system-ui, sans-serif;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  background: #0f1115;
+  color: #eaeaea;
+  overflow: hidden;
+}
+
+/* VIDEO BACKGROUND */
+.video-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+}
+.video-bg video {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  filter: brightness(0.55) blur(3px);
+  transform: scale(1.05);
+}
+
+/* OVERLAY */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 1;
+}
+
+/* CONTENT */
+.content {
+  position: relative;
+  z-index: 2;
+  height: 100vh;
+  max-width: 1100px;
+  margin: auto;
+  padding: 28px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* TEXT */
+h1 {
+  font-weight: 600;
+  font-size: 2.6rem;
+  margin-bottom: 8px;
+}
+.subtitle {
+  font-weight: 400;
+  opacity: 0.9;
+  margin-bottom: 26px;
+}
+
+/* BUTTON CARDS */
+.gift-row {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 28px;
+}
+.gift-item {
+  background: rgba(255,255,255,0.95);
+  width: 165px;
+  border-radius: 18px;
+  padding: 12px;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.gift-item:hover { transform: translateY(-6px); }
+
+.gift-img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+.gift-item span {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #ff6f91;
+}
+
+/* PC */
+.pc-frame { margin-top: 4px; }
+.pc-screen {
+  position: relative;
+  width: 330px;
+  height: 200px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 5px solid rgba(255,255,255,0.9);
+  box-shadow: 0 18px 45px rgba(0,0,0,0.45);
+}
+.pc-screen img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1.2s ease-in-out;
+}
+.pc-screen img.active { opacity: 1; }
+
+/* HEARTS */
+.heart {
+  position: fixed;
+  font-size: 18px;
+  color: #ff9dbb;
+  pointer-events: none;
+  animation: floatUp 6s linear infinite;
+  z-index: 3;
+}
+@keyframes floatUp {
+  0% { transform: translateY(110vh); opacity: 1; }
+  100% { transform: translateY(-10vh); opacity: 0; }
+}
+
+/* SOUND */
+#soundBtn {
+  position: fixed;
+  bottom: 22px;
+  right: 22px;
+  background: rgba(255,255,255,0.9);
+  color: #000;
+  border: none;
+  padding: 14px;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  z-index: 4;
+}
+
+/* MODALS */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 360px;
+  text-align: center;
+  position: relative;
+}
+
+.modal-content h2 { color: #000; }
+
+.close {
+  position: absolute;
+  right: 18px;
+  top: 12px;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* VIDEO POPUP */
+.video-popup video {
+  width: 100%;
+  border-radius: 12px;
+}
+
+/* GALLERY */
+.gallery-img {
+  width: 100%;
+  max-width: 280px;
+  border-radius: 14px;
+  margin-bottom: 14px;
+}
+.gallery-controls {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+.gallery-controls button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  background: #000;
+  color: #fff;
+}
+
+/* 🌸 POOKIE POPUP 🌸 */
+.pookie-box {
+  background: linear-gradient(135deg, #ffe4ec, #fff);
+  border-radius: 20px;
+  padding: 22px;
+}
+
+.pookie-box h2 {
+  color: #ff4f87;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.pookie-text {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 12px;
+}
+
+#pookieMessage {
+  width: 100%;
+  height: 110px;
+  border-radius: 14px;
+  border: 1px solid #ffc1d4;
+  padding: 12px;
+  font-size: 15px;
+  resize: none;
+}
+
+.pookie-send {
+  margin-top: 14px;
+  width: 100%;
+  background: #ff6f91;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  border-radius: 14px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.pookie-send:hover { background: #ff4f87; }
+</style>
+</head>
+
+<body>
+
+<!-- BACKGROUND VIDEO -->
+<div class="video-bg">
+  <video id="bgVideo" autoplay muted loop playsinline preload="auto">
+    <source src="bg.mp4" type="video/mp4">
+  </video>
+</div>
+<div class="overlay"></div>
+
+<div class="content">
+  <h1>Happy Birthday, Khushi ✨</h1>
+  <p class="subtitle">Just say 'HUHH' and move on 🫠.</p>
+
+  <div class="gift-row">
+    <div class="gift-item" onclick="openSecretTab()">
+      <img class="gift-img" src="img-secret.jpg">
+      <span>Secret Message</span>
+    </div>
+    <div class="gift-item" onclick="openGallery()">
+      <img class="gift-img" src="img-gallery.jpg">
+      <span>Cute Gallery</span>
+    </div>
+    <div class="gift-item" onclick="openSurpriseVideo()">
+      <img class="gift-img" src="img-surprise.jpg">
+      <span>Surprise</span>
+    </div>
+  </div>
+
+  <div class="pc-frame">
+    <div class="pc-screen">
+      <img src="img1.jpg" class="slide active">
+      <img src="img2.jpg" class="slide">
+      <img src="img3.jpg" class="slide">
+      <img src="img4.jpg" class="slide">
+      <img src="img5.jpg" class="slide">
+      <img src="img6.jpg" class="slide">
+    </div>
+  </div>
+</div>
+
+<button id="soundBtn" onclick="toggleSound()">🎵</button>
+
+<!-- 🌸 POOKIE MODAL -->
+<div id="pookieModal" class="modal">
+  <div class="modal-content pookie-box">
+    <span class="close" onclick="closePookie()">×</span>
+    <h2>🎀 Ask whatever gift you want 🧸</h2>
+    <p class="pookie-text">No judgement. Be cute. Be honest 💗</p>
+    <textarea id="pookieMessage" placeholder="Type your wish here… 💌"></textarea>
+    <button class="pookie-send" onclick="sendPookie()">Send with 💖</button>
+  </div>
+</div>
+
+<!-- GALLERY MODAL -->
+<div id="galleryModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeGallery()">×</span>
+    <h2>Swipe to See :)</h2>
+    <img id="galleryImage" class="gallery-img">
+    <div class="gallery-controls">
+      <button onclick="prevImage()">◀</button>
+      <button onclick="nextImage()">▶</button>
+    </div>
+  </div>
+</div>
+
+<!-- SURPRISE VIDEO MODAL -->
+<div id="videoModal" class="modal">
+  <div class="modal-content video-popup">
+    <span class="close" onclick="closeSurpriseVideo()">×</span>
+    <video id="surpriseVideo" controls>
+      <source src="surprise.mp4" type="video/mp4">
+    </video>
+  </div>
+</div>
+
+<script>
+/* HEARTS */
+setInterval(() => {
+  const h = document.createElement("div");
+  h.className = "heart";
+  h.innerText = "💗";
+  h.style.left = Math.random() * 100 + "vw";
+  document.body.appendChild(h);
+  setTimeout(() => h.remove(), 6000);
+}, 450);
+
+/* SOUND */
+const bgVideo = document.getElementById("bgVideo");
+function toggleSound(){ bgVideo.muted = !bgVideo.muted; }
+
+/* SLIDES */
+const slides=document.querySelectorAll(".slide");
+let i=0;
+setInterval(()=>{
+  slides[i].classList.remove("active");
+  i=(i+1)%slides.length;
+  slides[i].classList.add("active");
+},3000);
+
+/* 🌸 BUTTON 1 – POOKIE */
+function openSecretTab(){
+  document.getElementById("pookieModal").style.display="flex";
+}
+function closePookie(){
+  document.getElementById("pookieModal").style.display="none";
+}
+function sendPookie(){
+  const msg=document.getElementById("pookieMessage").value.trim();
+  if(!msg) return alert("Write something cute first 🥺");
+  const phone="916378259490";
+  window.open(`https://wa.me/${phone}?text=${encodeURIComponent("🎀 Gift Wish:\n"+msg)}`,"_blank");
+  document.getElementById("pookieMessage").value="";
+  closePookie();
+}
+
+/* GALLERY */
+const galleryImages=[
+"https://i.ibb.co/99JwbpFF/1.jpg",
+"https://i.ibb.co/Z6T7Qs4H/2.jpg",
+"https://i.ibb.co/xK9jL3QH/3.jpg",
+"https://i.ibb.co/9mjprjhS/4.jpg",
+"https://i.ibb.co/BKdZWLqM/5.jpg",
+"https://i.ibb.co/4RWdjSZ7/6.jpg"
+];
+let galleryIndex=0;
+function openGallery(){
+  galleryIndex=0;
+  galleryImage.src=galleryImages[galleryIndex];
+  galleryModal.style.display="flex";
+}
+function closeGallery(){galleryModal.style.display="none";}
+function nextImage(){
+  galleryIndex=(galleryIndex+1)%galleryImages.length;
+  galleryImage.src=galleryImages[galleryIndex];
+}
+function prevImage(){
+  galleryIndex=(galleryIndex-1+galleryImages.length)%galleryImages.length;
+  galleryImage.src=galleryImages[galleryIndex];
+}
+
+/* SURPRISE VIDEO */
+function openSurpriseVideo(){
+  videoModal.style.display="flex";
+  surpriseVideo.play();
+}
+function closeSurpriseVideo(){
+  surpriseVideo.pause();
+  surpriseVideo.currentTime=0;
+  videoModal.style.display="none";
+}
+</script>
+
+</body>
+</html>
